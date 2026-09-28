@@ -82,6 +82,25 @@ def room(levels: dict, level, name, ring_cm, *, floor_color, floor_visible=True)
             f"ceilingFlat='true'>\n{pts}\n  </room>")
 
 
+def wall(levels: dict, level, xstart, ystart, xend, yend, *, thickness, height,
+          wall_at_start=None, wall_at_end=None) -> str:
+    """<wall> : schema (xStart/yStart/xEnd/yEnd/thickness/height,
+    wallAtStart/wallAtEnd pour chainer des murs par id) verifie
+    empiriquement par fusion_interieur.py (JDK + SweetHome3D.jar, cf. son
+    docstring) -- jamais ecrit par le pipeline avant ce point, les murs
+    etaient toujours traces a la main dans l'appli native."""
+    wid = uid("wall")
+    a = [f"id='{wid}'", f"level='{levels[level]}'",
+         f"xStart='{xstart:.1f}'", f"yStart='{ystart:.1f}'",
+         f"xEnd='{xend:.1f}'", f"yEnd='{yend:.1f}'",
+         f"thickness='{thickness:.1f}'", f"height='{height:.1f}'"]
+    if wall_at_start:
+        a.append(f"wallAtStart='{wall_at_start}'")
+    if wall_at_end:
+        a.append(f"wallAtEnd='{wall_at_end}'")
+    return wid, f"  <wall {' '.join(a)}/>"
+
+
 def level(level_id, name, elevation, index) -> str:
     return (f"  <level id='{level_id}' name='{esc(name)}' elevation='{elevation:.1f}' "
             f"floorThickness='12.0' height='30.0' elevationIndex='{index}'/>")
