@@ -14,17 +14,17 @@
 # conda Windows et pip Linux/macOS/Docker, cf. CLAUDE.md) -- besoin de
 # Python >=3.12 (numpy 2.5.* l'exige). Python 3.14 recommande (image Docker
 # et environment.yml alignes dessus).
-numpy~=2.5.2
+numpy~=2.5.3
 scipy~=1.18.1
 shapely~=2.1.2
 geopandas~=1.1.4
 owslib~=0.36.0
 rasterio~=1.5.1
 scikit-image~=0.26.0
-networkx~=3.6.1
-pyproj~=3.7.2
+networkx~=3.7.0
+pyproj~=3.8.0
 pillow~=12.3.0
-pyvista~=0.48.4
+pyvista~=0.49.0
 # backend de decompression LAZ -- pip laspy ne l'embarque pas (contrairement
 # au paquet conda-forge), sinon LaspyException "No LazBackend selected" a la
 # lecture d'une dalle .copc.laz
